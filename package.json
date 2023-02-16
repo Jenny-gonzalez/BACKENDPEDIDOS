@@ -12,7 +12,7 @@
     "rolling",
     "backend"
   ],
-  "author": "Ezequiel Amin",
+  "author": "Grupo 2",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.19.3",

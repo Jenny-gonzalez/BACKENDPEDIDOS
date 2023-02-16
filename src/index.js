@@ -11,6 +11,7 @@ import './database/database';
 import { routerProducts } from './routes/productsRoutes';
 import { routerAuth } from './routes/authRoutes';
 import { routerUsers } from './routes/userRoutes';
+import { routerPedidos } from './routes/pedidosRoutes';
 
 //1- Inicializamos express
 const app = express();
@@ -27,6 +28,7 @@ app.use(express.json()); // <==== parse request body as JSON
 app.use(routerProducts);
 app.use(routerAuth);
 app.use(routerUsers);
+app.use(routerPedidos);
 
 //5- Loop del servidor
 app.listen(app.get('PORT'), () => {

@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 
 import UserDb from '../models/UserSchema';
 import ProductsDb from '../models/ProductSchema';
+import PedidosDb from '../models/PedidoSchema';
 
 import { randomInteger } from '../helpers/random';
 import { validateContent } from '../helpers/validateContent';
@@ -128,3 +129,54 @@ export const postLogin = async (req, res) => {
     token,
   });
 };
+
+export const postPedido = async (req, res) => {
+  const body = req.body;
+/*
+  // 1era validacion - Contenido
+  if (!validateContent('POST_PEDIDO', body)) {
+    //error de contenido
+    res.status(400).json({
+      message: 'Campos invalidos',
+    });
+    return;
+  }
+
+  // 2da validacion - Campo por campo
+  if (!validateData(body)) {
+    res.status(400).json({
+      message: 'Campos invalidos',
+    });
+    return;
+  }
+*/
+  // Datos validos -> Guardar pedido
+
+  const newPedido = new PedidosDb({
+    idpedido: randomInteger(0, 15000),
+    mesa: body.mesa,
+    categoria: body.categoria,
+    name: body.name,
+    description: body.description,
+    price: body.price,
+    subtot: body.subtot,
+    estado: body.estado,
+    username: body.username,
+    idprod: body.idprod,
+    iduser: body.iduser,
+    isActive: true,
+  });
+
+  try {
+    await newPedido.save();
+
+    res.json({
+      message: 'Pedido creado exitosamente',
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: 'ERROR: ' + err,
+    });
+  }
+};
+

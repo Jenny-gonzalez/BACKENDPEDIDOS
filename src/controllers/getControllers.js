@@ -1,5 +1,6 @@
 import UserDb from '../models/UserSchema';
 import ProductsDb from '../models/ProductSchema';
+import PedidosDb from '../models/PedidoSchema';
 
 export const getHome = (req, res) => {
   res.json({
@@ -27,6 +28,29 @@ export const getProduct = async (req, res) => {
   const { id } = params;
 
   const data = await ProductsDb.findOne({
+    //id: id,
+    id,
+  });
+
+  res.json({
+    data: data,
+  });
+};
+
+export const getPedidos = async (req, res) => {
+  const data = await PedidosDb.find();
+
+  res.json({
+    data: data,
+  });
+};
+
+export const getPedido = async (req, res) => {
+  // params es lo que viene dentro del endpoint como dato (ver ruta de endpoint)
+  const params = req.params;
+  const { id } = params;
+
+  const data = await PedidosDb.findOne({
     //id: id,
     id,
   });

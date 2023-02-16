@@ -1,4 +1,5 @@
 import ProductsDb from '../models/ProductSchema';
+//import PedidosDb from '../models/PedidoSchema'
 
 export const deleteProduct = async (req, res) => {
   const params = req.params;
@@ -17,3 +18,4 @@ export const deleteProduct = async (req, res) => {
     });
   }
 };
+
